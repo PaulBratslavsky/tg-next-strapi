@@ -1,8 +1,8 @@
 import { getAllCategories } from "@/data/loaders"
-import Image from "next/image"
 import Link from "next/link"
 import { Suspense } from "react"
 import { cn } from "@/lib/utils"
+import { StrapiImage } from "../custom/strapi-image"
 
 
 async function CategoriesContent() {
@@ -22,7 +22,7 @@ async function CategoriesContent() {
                 className="cursor-pointer flex flex-col text-start group hover:scale-105 transition-transform duration-200"
               >
                 <div className="relative overflow-hidden rounded-xl mb-5 sm:mb-6">
-                  <Image
+                  <StrapiImage
                     className="w-full aspect-[4/5] bg-muted object-cover group-hover:scale-110 transition-transform duration-300"
                     src={category.image.url || "/placeholder.svg"}
                     alt={category.name}

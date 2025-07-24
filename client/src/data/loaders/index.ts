@@ -29,13 +29,19 @@ export async function getAllCategories(
   return fetchData(url.href);
 }
 
-export async function getAllItems(
-  currentPage: number = 1
+export async function   getAllItems(
+  currentPage: number = 1,
+  query: string = "",
+  category: string = ""
 ): Promise<StrapiResponse<Item[]>> {
   const PAGE_SIZE = 3;
 
-  const query = qs.stringify({
+  const queryString = qs.stringify({
     sort: ["createdAt:desc"],
+    filters: {
+      name: { $containsi: query },
+      ...(category && { category: { url: { $eq: category } } }),
+    },
     populate: {
       image: {
         fields: ["url", "name", "alternativeText"],
@@ -56,6 +62,6 @@ export async function getAllItems(
     },
   });
   const url = new URL("/api/items", baseUrl);
-  url.search = query;
+  url.search = queryString || "";
   return fetchData(url.href);
 }

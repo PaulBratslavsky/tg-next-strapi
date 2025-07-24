@@ -1,5 +1,5 @@
-import Image from "next/image"
 import { Item } from "@/types"
+import { StrapiImage } from "../custom/strapi-image"
 
 interface ProductViewProps {
   item: Item
@@ -13,7 +13,7 @@ export function ProductView({ item }: ProductViewProps) {
           {/* Product Image */}
           <div className="relative">
             <div className="relative overflow-hidden rounded-2xl">
-              <Image
+              <StrapiImage
                 className="w-full aspect-square bg-muted object-cover"
                 src={item.image.url || "/placeholder.svg"}
                 alt={item.name}

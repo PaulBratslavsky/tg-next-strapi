@@ -4,16 +4,23 @@ import { ProductsList } from "@/components/blocks/products"
 import { cn } from "@/lib/utils"
 import { Search } from "@/components/custom/search"
 import { PaginationComponent } from "@/components/custom/pagination"
+import { CategorySelect } from "@/components/custom/category-tags"
+import { PageProps } from "@/types"
 
-export default async function ProductsRoute() {
-  const { data: items } = await getAllItems()
-  console.log(items)
+export default async function ProductsRoute({ searchParams }: PageProps) {
+  const { page, query, category } = await searchParams
+  console.log(page, query, category)
+
+  const { data: items, meta } = await getAllItems(page ? parseInt(page) : 1, query, category)
+  const pageCount = meta?.pagination.pageCount || 1
+
   return (
     <Suspense fallback={<ProductsSkeleton />}>
       <div className="my-14 container mx-auto">
         <Search />
+        <CategorySelect />
         <ProductsList items={items || []} />
-        <PaginationComponent pageCount={10} />
+        <PaginationComponent pageCount={pageCount} />
       </div>
     </Suspense>
   )

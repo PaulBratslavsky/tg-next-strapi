@@ -1,4 +1,3 @@
-import { Eclipse } from "lucide-react";
 
 export type StrapiResponse<T = null> = {
   success: boolean;
@@ -34,6 +33,10 @@ export interface RouteParams extends BaseParams {
 
 export type Params = Promise<RouteParams>;
 export type SearchParams = Promise<BaseParams>;
+
+export interface PageProps {
+  searchParams: Promise<{ page?: string; query?: string; category?: string }>
+}
 
 export type Tag = {
   documentId: string;

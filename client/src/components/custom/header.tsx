@@ -36,7 +36,7 @@ export function Header({ user }: HeaderProps) {
             <Link
               key={item.id}
               href={item.href}
-              className="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors relative after:content-[''] after:block after:h-0.5 after:bg-primary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-200 after:origin-left after:rounded-full"
+              className="px-2 py-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors relative after:content-[''] after:block after:h-0.5 after:bg-primary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-200 after:origin-left after:rounded-full"
             >
               {item.label}
             </Link>
